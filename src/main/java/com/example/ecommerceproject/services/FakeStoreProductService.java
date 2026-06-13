@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Service
+@Service("fakeStoreProductService")
 // to tell the spring that this is a service class
 public class FakeStoreProductService implements ProductService{
     //using rest template, we call call 3rd party apis

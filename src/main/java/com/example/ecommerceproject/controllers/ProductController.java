@@ -6,6 +6,7 @@ import com.example.ecommerceproject.DTOs.FakeStoreProductDto;
 import com.example.ecommerceproject.Exceptions.ProductNotFoundException;
 import com.example.ecommerceproject.models.Product;
 import com.example.ecommerceproject.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class ProductController {
     public ProductService productService;
 
     //inject the dependencies as below
-    public ProductController(ProductService productService, RestTemplate restTemplate) {
+    public ProductController(@Qualifier ("selfProductService") ProductService productService, RestTemplate restTemplate) {
         this.productService = productService;
         this.restTemplate = restTemplate;
     }
