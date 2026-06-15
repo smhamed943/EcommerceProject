@@ -9,6 +9,7 @@ import com.example.ecommerceproject.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("selfProductService")
 public class SelfProductService implements ProductService{
@@ -27,12 +28,16 @@ public class SelfProductService implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        return List.of();
+        return productRepository.findAll();// makes an API call to db
     }
 
     @Override
     public Product getSingleProduct(long id) throws ProductNotFoundException {
-        return null;
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()){
+            throw new ProductNotFoundException("Product with id " + id + " does not exist. Please try with other id.");
+        }
+        return product.get(); //makes an API call to db
     }
 
     @Override
